@@ -41,7 +41,7 @@ async function main() {
   app.use(cors());
   app.use(express.json());
   const server = http.createServer(app);
-  server.listen(cfg.PORT);
+  server.listen(cfg.PORT, cfg.BIND);
 
   const client = await new MongoClient(cfg.MONGODB_CONNECTION_STRING).connect();
   mongoConnectionPool.addClient(client);
