@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
 import express from "express";
-import { cfg, CollectionName } from "app/cfg";
-import { ExceptionWrapper } from "app/middlewares";
-import BaseResponse from "app/payloads/BaseResponse";
-import { mongoConnectionPool } from "app/connections";
-import { Subject } from "app/entities";
-import { resolveMongoFilter } from "app/merin";
-import { modify, m } from "app/modifiers";
+import { cfg, CollectionName } from "src/cfg";
+import { ExceptionWrapper } from "src/middlewares";
+import { BaseResponse } from "src/payloads";
+import { mongoConnectionPool } from "src/connections";
+import { Subject } from "src/entities";
+import { resolveMongoFilter } from "src/merin";
+import { modify, m } from "src/modifiers";
 import { Filter } from "mongodb";
 
 export const router = express.Router();

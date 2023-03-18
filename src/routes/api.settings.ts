@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
 import express from "express";
-import { cfg } from "app/cfg";
-import { ExceptionWrapper, IsAdminFilter, JwtFilter } from "app/middlewares";
-import BaseResponse from "app/payloads/BaseResponse";
-import { cachedSettings } from "app/services";
+import { cfg } from "src/cfg";
+import { ExceptionWrapper, IsAdminFilter, JwtFilter } from "src/middlewares";
+import { BaseResponse } from "src/payloads";
+import { cachedSettings } from "src/services";
 
 export const router = express.Router();
 

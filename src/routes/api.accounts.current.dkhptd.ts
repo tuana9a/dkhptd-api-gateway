@@ -1,14 +1,14 @@
 import express from "express";
 import { ObjectId } from "mongodb";
-import { cfg, CollectionName, JobStatus } from "app/cfg";
-import { mongoConnectionPool } from "app/connections";
-import { DKHPTDJob } from "app/entities";
-import { EmptyStringError, FaslyValueError, MissingRequestBodyDataError, NotAnArrayError, RequireLengthFailed } from "app/exceptions";
-import { ExceptionWrapper, JwtFilter } from "app/middlewares";
-import { RateLimit } from "app/middlewares";
-import { modify, m } from "app/modifiers";
-import BaseResponse from "app/payloads/BaseResponse";
-import { isEmpty, isFalsy } from "app/utils";
+import { cfg, CollectionName, JobStatus } from "src/cfg";
+import { mongoConnectionPool } from "src/connections";
+import { DKHPTDJob } from "src/entities";
+import { EmptyStringError, FaslyValueError, MissingRequestBodyDataError, NotAnArrayError, RequireLengthFailed } from "src/exceptions";
+import { ExceptionWrapper, JwtFilter } from "src/middlewares";
+import { RateLimit } from "src/middlewares";
+import { modify, m } from "src/modifiers";
+import { BaseResponse } from "src/payloads";
+import { isEmpty, isFalsy } from "src/utils";
 
 export const router = express.Router();
 

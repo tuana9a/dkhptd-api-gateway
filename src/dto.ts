@@ -2,7 +2,8 @@ import crypto from "crypto";
 import { modify, m } from "./modifiers";
 import { cfg } from "./cfg";
 import { c } from "./cypher";
-import { DKHPTDJobV1, DKHPTDJobV2, DKHPTDJobV1Result, DKHPTDJobResult, DKHPTDJobV2Result } from "./entities";
+import { DKHPTDJobV1, DKHPTDJobV2, DKHPTDJobV1Result, DKHPTDJobResult, DKHPTDJobV2Result, ClassToRegister } from "./entities";
+import { ParsedClassToRegister } from "./payloads";
 
 export const dropPassword = (input: unknown) => modify(input, [m.drop(["password"])]);
 
@@ -104,5 +105,22 @@ export const decryptJobV2Result = (input: DKHPTDJobV2Result) => {
     logs: logs,
     vars: vars,
     createdAt: input.createdAt,
+  });
+};
+
+export const toCTR = (parsed: ParsedClassToRegister) => {
+  return new ClassToRegister({
+    classId: parsed.class_id,
+    secondClassId: parsed.second_class_id,
+    classType: parsed.class_type,
+    subjectId: parsed.subject_id,
+    subjectName: parsed.subject_name,
+    learnDayNumber: parsed.learn_day_number,
+    learnAtDayOfWeek: parsed.learn_at_day_of_week,
+    learnTime: parsed.learn_time,
+    learnRoom: parsed.learn_room,
+    learnWeek: parsed.learn_week,
+    describe: parsed.describe,
+    termId: parsed.term_id,
   });
 };

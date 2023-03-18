@@ -1,17 +1,17 @@
 import express from "express";
 import { Filter } from "mongodb";
 import multer from "multer";
-import { cfg, CollectionName, QueueName } from "app/cfg";
-import { mongoConnectionPool, rabbitmqConnectionPool } from "app/connections";
-import { ExceptionWrapper, IsAdminFilter, JwtFilter } from "app/middlewares";
-import { modify, m } from "app/modifiers";
-import BaseResponse from "app/payloads/BaseResponse";
-import { toBuffer, toNormalizedString, toSafeInt } from "app/utils";
-import { resolveMongoFilter } from "app/merin";
-import { FaslyValueError, NotAnArrayError } from "app/exceptions";
-import { isFalsy } from "app/utils";
-import { ClassToRegister } from "app/entities";
-import logger from "app/loggers/logger";
+import { cfg, CollectionName, QueueName } from "src/cfg";
+import { mongoConnectionPool, rabbitmqConnectionPool } from "src/connections";
+import { ExceptionWrapper, IsAdminFilter, JwtFilter } from "src/middlewares";
+import { modify, m } from "src/modifiers";
+import { BaseResponse } from "src/payloads";
+import { toBuffer, toNormalizedString, toSafeInt } from "src/utils";
+import { resolveMongoFilter } from "src/merin";
+import { FaslyValueError, NotAnArrayError } from "src/exceptions";
+import { isFalsy } from "src/utils";
+import { ClassToRegister } from "src/entities";
+import logger from "src/loggers/logger";
 
 export const router = express.Router();
 

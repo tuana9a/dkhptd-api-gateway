@@ -1,11 +1,11 @@
 import express from "express";
 import { ObjectId } from "mongodb";
-import { cfg, CollectionName } from "app/cfg";
-import { mongoConnectionPool } from "app/connections";
-import { ExceptionWrapper } from "app/middlewares";
-import { IsAdminFilter } from "app/middlewares";
-import { JwtFilter } from "app/middlewares";
-import BaseResponse from "app/payloads/BaseResponse";
+import { cfg, CollectionName } from "src/cfg";
+import { mongoConnectionPool } from "src/connections";
+import { ExceptionWrapper } from "src/middlewares";
+import { IsAdminFilter } from "src/middlewares";
+import { JwtFilter } from "src/middlewares";
+import { BaseResponse } from "src/payloads";
 
 export const router = express.Router();
 

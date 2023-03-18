@@ -1,15 +1,14 @@
 import express from "express";
-import { cfg, CollectionName } from "app/cfg";
-import { mongoConnectionPool } from "app/connections";
-import { Account } from "app/entities";
-import { FaslyValueError, UsernameExistedError } from "app/exceptions";
-import { ExceptionWrapper } from "app/middlewares";
-import { isFalsy } from "app/utils";
-import { modify, m } from "app/modifiers";
-import BaseResponse from "app/payloads/BaseResponse";
-import LoginWithUsernamePasswordRequest from "app/payloads/LoginWithUsernamePasswordRequest";
-import { toSHA256 } from "app/utils";
-import { dropPassword } from "app/dto";
+import { cfg, CollectionName } from "src/cfg";
+import { mongoConnectionPool } from "src/connections";
+import { Account } from "src/entities";
+import { FaslyValueError, UsernameExistedError } from "src/exceptions";
+import { ExceptionWrapper } from "src/middlewares";
+import { isFalsy } from "src/utils";
+import { modify, m } from "src/modifiers";
+import { BaseResponse, LoginWithUsernamePasswordRequest } from "src/payloads";
+import { toSHA256 } from "src/utils";
+import { dropPassword } from "src/dto";
 
 export const router = express.Router();
 

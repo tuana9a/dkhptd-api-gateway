@@ -1,7 +1,7 @@
-import { AppEvent } from "app/cfg";
-import { bus } from "app/bus";
-import logger from "app/loggers/logger";
-import { cachedSettings } from "app/services";
+import { AppEvent } from "src/cfg";
+import { bus } from "src/bus";
+import logger from "src/loggers/logger";
+import { cachedSettings } from "src/services";
 
 export const setup = () => {
   bus.on(AppEvent.REPLACE_TERM_IDS, async (termIds: string[]) => {

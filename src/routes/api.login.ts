@@ -1,14 +1,13 @@
 import express from "express";
-import { cfg, CollectionName } from "app/cfg";
+import { cfg, CollectionName } from "src/cfg";
 import jwt from "jsonwebtoken";
-import { mongoConnectionPool } from "app/connections";
-import { AccountNotFoundError, WrongPasswordError } from "app/exceptions";
-import { ExceptionWrapper } from "app/middlewares";
-import { modify, m } from "app/modifiers";
-import BaseResponse from "app/payloads/BaseResponse";
-import LoginWithUsernamePasswordRequest from "app/payloads/LoginWithUsernamePasswordRequest";
-import { toSHA256 } from "app/utils";
-import { Account } from "app/entities";
+import { mongoConnectionPool } from "src/connections";
+import { AccountNotFoundError, WrongPasswordError } from "src/exceptions";
+import { ExceptionWrapper } from "src/middlewares";
+import { modify, m } from "src/modifiers";
+import { BaseResponse, LoginWithUsernamePasswordRequest } from "src/payloads";
+import { toSHA256 } from "src/utils";
+import { Account } from "src/entities";
 
 export const router = express.Router();
 

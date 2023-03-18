@@ -11,7 +11,7 @@ export const cfg = {
   LOG_DIR: process.env.LOG_DIR || "./logs",
   RABBITMQ_CONNECTION_STRING: process.env.RABBITMQ_CONNECTION_STRING || "amqp://localhost:5672",
   MONGODB_CONNECTION_STRING: process.env.MONGODB_CONNECTION_STRING || "mongodb://localhost:27017",
-  DATABASE_NAME: "dkhptd",
+  DATABASE_NAME: process.env.DATABASE_NAME || "dkhptd",
 };
 
 export const JobStatus = {

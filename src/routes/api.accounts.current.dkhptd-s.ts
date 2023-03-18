@@ -1,16 +1,16 @@
 import express from "express";
 import { Filter, ObjectId } from "mongodb";
-import { cfg, CollectionName, JobStatus } from "app/cfg";
-import { mongoConnectionPool } from "app/connections";
-import { ExceptionWrapper } from "app/middlewares";
-import { RateLimit } from "app/middlewares";
-import { modify, m } from "app/modifiers";
-import BaseResponse from "app/payloads/BaseResponse";
-import { resolveMongoFilter } from "app/merin";
-import { isFalsy } from "app/utils";
+import { cfg, CollectionName, JobStatus } from "src/cfg";
+import { mongoConnectionPool } from "src/connections";
+import { ExceptionWrapper } from "src/middlewares";
+import { RateLimit } from "src/middlewares";
+import { modify, m } from "src/modifiers";
+import { BaseResponse } from "src/payloads";
+import { resolveMongoFilter } from "src/merin";
+import { isFalsy } from "src/utils";
 import { isEmpty } from "lodash";
-import { FaslyValueError, EmptyStringError, RequireLengthFailed, JobNotFoundError, NotAnArrayError } from "app/exceptions";
-import { DKHPTDJob } from "app/entities";
+import { FaslyValueError, EmptyStringError, RequireLengthFailed, JobNotFoundError, NotAnArrayError } from "src/exceptions";
+import { DKHPTDJob } from "src/entities";
 
 export const router = express.Router();
 

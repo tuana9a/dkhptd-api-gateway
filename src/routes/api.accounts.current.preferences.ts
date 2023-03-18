@@ -2,15 +2,15 @@
 
 import express from "express";
 import { Filter, ObjectId } from "mongodb";
-import { cfg, CollectionName } from "app/cfg";
-import { mongoConnectionPool } from "app/connections";
-import { ExceptionWrapper } from "app/middlewares";
-import BaseResponse from "app/payloads/BaseResponse";
-import { JwtFilter } from "app/middlewares";
-import { isFalsy } from "app/utils";
-import { MissingRequestBodyDataError } from "app/exceptions";
-import { AccountPreference } from "app/entities";
-import { modify, m } from "app/modifiers";
+import { cfg, CollectionName } from "src/cfg";
+import { mongoConnectionPool } from "src/connections";
+import { ExceptionWrapper } from "src/middlewares";
+import { BaseResponse } from "src/payloads";
+import { JwtFilter } from "src/middlewares";
+import { isFalsy } from "src/utils";
+import { MissingRequestBodyDataError } from "src/exceptions";
+import { AccountPreference } from "src/entities";
+import { modify, m } from "src/modifiers";
 
 export const router = express.Router();
 

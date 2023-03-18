@@ -1,13 +1,13 @@
 import express from "express";
 import { ObjectId, Filter } from "mongodb";
-import { cfg, CollectionName } from "app/cfg";
-import { mongoConnectionPool } from "app/connections";
-import { ExceptionWrapper, InjectTermId } from "app/middlewares";
-import BaseResponse from "app/payloads/BaseResponse";
-import { modify, m } from "app/modifiers";
-import { toNormalizedString, toSafeInt } from "app/utils";
-import { resolveMongoFilter } from "app/merin";
-import { ClassToRegister } from "app/entities";
+import { cfg, CollectionName } from "src/cfg";
+import { mongoConnectionPool } from "src/connections";
+import { ExceptionWrapper, InjectTermId } from "src/middlewares";
+import { BaseResponse } from "src/payloads";
+import { modify, m } from "src/modifiers";
+import { toNormalizedString, toSafeInt } from "src/utils";
+import { resolveMongoFilter } from "src/merin";
+import { ClassToRegister } from "src/entities";
 
 export const router = express.Router();
 

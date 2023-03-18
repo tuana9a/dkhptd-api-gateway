@@ -5,12 +5,34 @@ import express from "express";
 import * as amqplib from "amqplib/callback_api";
 import { MongoClient } from "mongodb";
 import cors from "cors";
+import crypto from "crypto";
 
-import { cfg, CollectionName, QueueName } from "./cfg";
+import { cfg, CollectionName, QueueName, Role } from "./cfg";
 import logger from "./loggers/logger";
-import { ensureIndex, toJson, toKeyValueString } from "./utils";
+import { ensureIndex, toJson, toKeyValueString, toSHA256 } from "./utils";
 import { mongoConnectionPool, rabbitmqConnectionPool } from "./connections";
 import { cachedSettings } from "./services";
+import { Account } from "./entities";
+
+async function ensureRootAccount() {
+  const doc = await mongoConnectionPool
+    .getClient()
+    .db(cfg.DATABASE_NAME)
+    .collection(CollectionName.ACCOUNT)
+    .findOne({ username: "root" });
+
+  if (doc) return;
+  const password = crypto.randomBytes(32).toString("hex");
+  const account = new Account({ username: "root", password: toSHA256(password), role: Role.ADMIN });
+
+  await mongoConnectionPool
+    .getClient()
+    .db(cfg.DATABASE_NAME)
+    .collection(CollectionName.ACCOUNT)
+    .insertOne(account);
+
+  logger.info(`Insert root account with password ${password}`);
+}
 
 async function main() {
   logger.info(`Config: \n${toKeyValueString(cfg)}`);
@@ -38,6 +60,8 @@ async function main() {
   ensureIndex(client.db(cfg.DATABASE_NAME), CollectionName.SUBJECT, { subjectId: 1 });
   ensureIndex(client.db(cfg.DATABASE_NAME), CollectionName.SUBJECT, { subjectName: 1 });
   ensureIndex(client.db(cfg.DATABASE_NAME), CollectionName.SUBJECT, { subjectId: 1, subjectName: 1 });
+
+  ensureRootAccount();
 
   amqplib.connect(cfg.RABBITMQ_CONNECTION_STRING, (error0, connection) => {
     if (error0) {

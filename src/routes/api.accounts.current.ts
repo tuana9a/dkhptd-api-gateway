@@ -1,16 +1,16 @@
 import express from "express";
 import { Filter, ObjectId } from "mongodb";
-import { cfg, CollectionName } from "app/cfg";
-import { mongoConnectionPool } from "app/connections";
-import { ExceptionWrapper } from "app/middlewares";
-import BaseResponse from "app/payloads/BaseResponse";
-import { toSHA256 } from "app/utils";
-import { JwtFilter } from "app/middlewares";
-import { isFalsy } from "app/utils";
-import { AccountNotFoundError } from "app/exceptions";
-import { Account } from "app/entities";
-import { modify, m } from "app/modifiers";
-import { dropPassword } from "app/dto";
+import { cfg, CollectionName } from "src/cfg";
+import { mongoConnectionPool } from "src/connections";
+import { ExceptionWrapper } from "src/middlewares";
+import { BaseResponse } from "src/payloads";
+import { toSHA256 } from "src/utils";
+import { JwtFilter } from "src/middlewares";
+import { isFalsy } from "src/utils";
+import { AccountNotFoundError } from "src/exceptions";
+import { Account } from "src/entities";
+import { modify, m } from "src/modifiers";
+import { dropPassword } from "src/dto";
 import jwt from "jsonwebtoken";
 
 export const router = express.Router();

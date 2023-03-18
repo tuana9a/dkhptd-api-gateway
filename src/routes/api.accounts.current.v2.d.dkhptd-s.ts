@@ -1,13 +1,13 @@
 import express from "express";
 import { Filter, ObjectId } from "mongodb";
-import { cfg, CollectionName } from "app/cfg";
-import { mongoConnectionPool } from "app/connections";
-import { ExceptionWrapper, JwtFilter } from "app/middlewares";
-import { decryptJobV2 } from "app/dto";
-import { modify, m } from "app/modifiers";
-import BaseResponse from "app/payloads/BaseResponse";
-import { resolveMongoFilter } from "app/merin";
-import { DKHPTDJobV2 } from "app/entities";
+import { cfg, CollectionName } from "src/cfg";
+import { mongoConnectionPool } from "src/connections";
+import { ExceptionWrapper, JwtFilter } from "src/middlewares";
+import { decryptJobV2 } from "src/dto";
+import { modify, m } from "src/modifiers";
+import { BaseResponse } from "src/payloads";
+import { resolveMongoFilter } from "src/merin";
+import { DKHPTDJobV2 } from "src/entities";
 
 export const router = express.Router();
 

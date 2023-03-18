@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 import { cfg, CollectionName, Role } from "./cfg";
 import { mongoConnectionPool } from "./connections";
 import { Account } from "./entities";
-import BaseResponse from "./payloads/BaseResponse";
+import { BaseResponse } from "./payloads";
 import logger from "./loggers/logger";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const ratelimit = require("express-rate-limit");

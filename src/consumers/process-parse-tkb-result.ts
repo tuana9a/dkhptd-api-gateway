@@ -1,7 +1,8 @@
-import { QueueName, AppEvent } from "app/cfg";
-import { ClassToRegister, Subject } from "app/entities";
-import { modify, m } from "app/modifiers";
-import ParsedClassToRegister from "app/payloads/ParsedClassToRegister";
+import { QueueName, AppEvent } from "src/cfg";
+import { toCTR } from "src/dto";
+import { ClassToRegister, Subject } from "src/entities";
+import { modify, m } from "src/modifiers";
+import { ParsedClassToRegister } from "src/payloads";
 import { bus } from "../bus";
 import { rabbitmqConnectionPool } from "../connections";
 import logger from "../loggers/logger";
@@ -20,7 +21,7 @@ export const setup = () => {
           logger.info(`Received parsed class to register, count: ${result.data.length}`);
           const classes = result.data
             .map((x) => new ParsedClassToRegister(x))
-            .map((x) => x.toCTR())
+            .map((x) => toCTR(x))
             .map((x) => modify(x, [
               m.normalizeInt("classId"),
               m.normalizeInt("secondClassId"),

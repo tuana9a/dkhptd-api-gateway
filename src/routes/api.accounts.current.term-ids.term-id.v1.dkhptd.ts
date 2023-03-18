@@ -1,16 +1,16 @@
 import { ObjectId } from "mongodb";
 import express from "express";
 import { isEmpty } from "lodash";
-import { JobStatus, cfg, CollectionName } from "app/cfg";
-import { mongoConnectionPool } from "app/connections";
-import { DKHPTDJobV1 } from "app/entities";
-import { MissingRequestBodyDataError, FaslyValueError, EmptyStringError, RequireLengthFailed, InvalidTermIdError } from "app/exceptions";
-import { ExceptionWrapper, InjectTermId, JwtFilter } from "app/middlewares";
-import { RateLimit } from "app/middlewares";
-import BaseResponse from "app/payloads/BaseResponse";
-import { modify, m } from "app/modifiers";
-import { isFalsy, isValidTermId } from "app/utils";
-import { encryptJobV1 } from "app/dto";
+import { JobStatus, cfg, CollectionName } from "src/cfg";
+import { mongoConnectionPool } from "src/connections";
+import { DKHPTDJobV1 } from "src/entities";
+import { MissingRequestBodyDataError, FaslyValueError, EmptyStringError, RequireLengthFailed, InvalidTermIdError } from "src/exceptions";
+import { ExceptionWrapper, InjectTermId, JwtFilter } from "src/middlewares";
+import { RateLimit } from "src/middlewares";
+import { BaseResponse } from "src/payloads";
+import { modify, m } from "src/modifiers";
+import { isFalsy, isValidTermId } from "src/utils";
+import { encryptJobV1 } from "src/dto";
 
 export const router = express.Router();
 

@@ -1,5 +1,5 @@
 import { ObjectId } from "mongodb";
-import BaseResponse from "./payloads/BaseResponse";
+import { BaseResponse } from "./payloads";
 
 export class SafeError extends Error {
   code: number;

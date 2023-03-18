@@ -10,7 +10,7 @@
     "test": "jest tests"
   },
   "_moduleAliases": {
-    "app": "dist"
+    "src": "dist"
   },
   "dependencies": {
     "amqplib": "^0.10.3",
