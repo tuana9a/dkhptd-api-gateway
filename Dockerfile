@@ -5,4 +5,5 @@ COPY tsconfig.json .
 RUN npm install
 COPY src src
 RUN npx tsc
+RUN date +"%Y-%m-%d" > version.txt
 CMD node dist/index.js
