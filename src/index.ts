@@ -5,7 +5,6 @@ import express from "express";
 import * as amqplib from "amqplib/callback_api";
 import { MongoClient } from "mongodb";
 import cors from "cors";
-import crypto from "crypto";
 
 import { cfg, CollectionName, QueueName, Role } from "./cfg";
 import logger from "./loggers/logger";
@@ -22,7 +21,7 @@ async function ensureRootAccount() {
     .findOne({ username: "root" });
 
   if (doc) return;
-  const password = crypto.randomBytes(32).toString("hex");
+  const password = cfg.INIT_ROOT_PASSWORD;
   const account = new Account({ username: "root", password: toSHA256(password), role: Role.ADMIN });
 
   await mongoConnectionPool

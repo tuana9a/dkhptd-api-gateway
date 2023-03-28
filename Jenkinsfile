@@ -6,6 +6,7 @@ pipeline {
         CONTAINER_NETWORK = credentials('CONTAINER_NETWORK')
         CONTAINER_IP = credentials('CONTAINER_IP')
         SECRET = credentials('SECRET')
+        INIT_ROOT_PASSWORD = credentials('INIT_ROOT_PASSWORD')
         JOB_ENCRYPTION_KEY = credentials('JOB_ENCRYPTION_KEY')
         AMQP_ENCRYPTION_KEY = credentials('AMQP_ENCRYPTION_KEY')
         RABBITMQ_CONNECTION_STRING = credentials('RABBITMQ_CONNECTION_STRING')
@@ -50,6 +51,7 @@ pipeline {
                     --ip $CONTAINER_IP \
                     -e BIND=$BIND \
                     -e SECRET=$SECRET \
+                    -e INIT_ROOT_PASSWORD=$INIT_ROOT_PASSWORD \
                     -e JOB_ENCRYPTION_KEY=$JOB_ENCRYPTION_KEY \
                     -e AMQP_ENCRYPTION_KEY=$AMQP_ENCRYPTION_KEY \
                     -e RABBITMQ_CONNECTION_STRING=$RABBITMQ_CONNECTION_STRING \

@@ -1,3 +1,4 @@
+import crypto from "crypto";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -12,6 +13,7 @@ export const cfg = {
   RABBITMQ_CONNECTION_STRING: process.env.RABBITMQ_CONNECTION_STRING || "amqp://localhost:5672",
   MONGODB_CONNECTION_STRING: process.env.MONGODB_CONNECTION_STRING || "mongodb://localhost:27017",
   DATABASE_NAME: process.env.DATABASE_NAME || "dkhptd",
+  INIT_ROOT_PASSWORD: process.env.INIT_ROOT_PASSWORD || crypto.randomBytes(32).toString("hex"),
 };
 
 export const JobStatus = {
