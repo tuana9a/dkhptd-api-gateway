@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    triggers {
+        githubPush()
+    }
     environment {
         BIND = '0.0.0.0'
         CONTAINER_NAME = credentials('CONTAINER_NAME')
