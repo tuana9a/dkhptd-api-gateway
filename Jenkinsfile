@@ -4,6 +4,7 @@ pipeline {
         githubPush()
     }
     environment {
+        IMAGE_NAME = 'tuana9a/dkhptd-api-gateway'
         CONTAINER_NAME = credentials('CONTAINER_NAME')
         CONTAINER_NETWORK = credentials('CONTAINER_NETWORK')
         CONTAINER_IP = credentials('CONTAINER_IP')
@@ -18,8 +19,8 @@ pipeline {
                 script {
                     // Build the Docker image
                     sh 'docker build . \
-                    -t tuana9a/dkhptd-api-gateway:$BUILD_TAG \
-                    -t tuana9a/dkhptd-api-gateway:latest'
+                    -t $IMAGE_NAME:$BUILD_TAG \
+                    -t $IMAGE_NAME:latest'
                 }
             }
         }
@@ -28,8 +29,8 @@ pipeline {
                 script {
                     // Push the Docker image to a Docker registry
                     docker.withRegistry('', 'docker-credentials') {
-                        sh 'docker push tuana9a/dkhptd-api-gateway:$BUILD_TAG'
-                        sh 'docker push tuana9a/dkhptd-api-gateway:latest'
+                        sh 'docker push $IMAGE_NAME:$BUILD_TAG'
+                        sh 'docker push $IMAGE_NAME:latest'
                     }
                 }
             }
@@ -47,7 +48,7 @@ pipeline {
                             --net $CONTAINER_NETWORK \
                             --ip $CONTAINER_IP \
                             --env-file $envFile \
-                            tuana9a/dkhptd-api-gateway'''
+                            $IMAGE_NAME'''
                     }
                 }
             }
