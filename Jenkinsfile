@@ -48,6 +48,7 @@ pipeline {
                             --net $CONTAINER_NETWORK \
                             --ip $CONTAINER_IP \
                             --env-file $envFile \
+                            --restart unless-stopped \
                             $IMAGE_NAME'''
                     }
                 }
