@@ -65,12 +65,12 @@ async function main() {
   amqplib.connect(cfg.RABBITMQ_CONNECTION_STRING, (error0, connection) => {
     if (error0) {
       logger.error(error0);
-      return;
+      return process.exit(0);
     }
     connection.createChannel((error1, channel) => {
       if (error1) {
         logger.error(error1);
-        return;
+        return process.exit(0);
       }
       rabbitmqConnectionPool.addChannel(channel);
       channel.assertQueue(QueueName.PARSE_TKB_XLSX);
