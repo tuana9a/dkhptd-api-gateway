@@ -37,7 +37,7 @@ describe("merin", () => {
   });
 
   test("regex", () => {
-    expect(resolveMongoFilter(["name*=t"])).toEqual({ name: { $regex: new RegExp("t") } });
+    expect(resolveMongoFilter(["name*=t"])).toEqual({ name: { $regex: new RegExp("t", "i") } });
   });
 
   test("auto number", () => {
