@@ -47,7 +47,8 @@ async function main() {
   cachedSettings.loadFromDb();
   ensureIndex(client.db(cfg.DATABASE_NAME), CollectionName.ACCOUNT, { username: 1, password: 1 });
   ensureIndex(client.db(cfg.DATABASE_NAME), CollectionName.CTR, { classId: 1 });
-  ensureIndex(client.db(cfg.DATABASE_NAME), CollectionName.CTR, { classId: 1, learnDayNumber: 1, termId: 1 });
+  ensureIndex(client.db(cfg.DATABASE_NAME), CollectionName.CTR, { termId: 1 });
+  ensureIndex(client.db(cfg.DATABASE_NAME), CollectionName.CTR, { classId: 1, termId: 1 });
   ensureIndex(client.db(cfg.DATABASE_NAME), CollectionName.DKHPTDV1, { ownerAccountId: 1 });
   ensureIndex(client.db(cfg.DATABASE_NAME), CollectionName.DKHPTDV1, { ownerAccountId: 1, termId: 1 });
   ensureIndex(client.db(cfg.DATABASE_NAME), CollectionName.DKHPTDV1, { timeToStart: 1 });
