@@ -6,4 +6,4 @@ RUN npm install
 COPY src src
 RUN npx tsc
 RUN date +"%Y.%m.%d.%H%M%S" > version.tmp.txt
-CMD node dist/index.js
+CMD ["node", "dist/index.js"]
