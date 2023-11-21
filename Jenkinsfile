@@ -37,18 +37,20 @@ pipeline {
         }
         stage('Update manifest version') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'github-username-password-tuana9a', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                withCredentials([usernamePassword(credentialsId: 'gitlab-username-password-tuana9a', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                     script {
-                        env.MANIFEST_REPO_NAME = 'dkhptd-manifests'
-                        env.MANIFEST_REPO_URL = sh (script: 'echo "https://$GIT_USERNAME:$GIT_PASSWORD@github.com/tuana9a/dkhptd-manifests.git"', returnStdout: true).trim()
+                        env.MANIFEST_REPO_NAME = 'platform'
+                        env.MANIFEST_REPO_URL = sh (script: 'echo "https://$GIT_USERNAME:$GIT_PASSWORD@gitlab.com/tuana9a/platform.git"', returnStdout: true).trim()
+                        env.MR_BRANCH_NAME = "bump-dkhptd-api-gateway-version-$BUILD_TAG_SECONDLY"
                         sh 'if [ -d $MANIFEST_REPO_NAME ]; then rm -r $MANIFEST_REPO_NAME; fi'
                         sh 'git clone $MANIFEST_REPO_URL'
                         sh '''
                         cd $MANIFEST_REPO_NAME
-                        sed -i "s|image: tuana9a/dkhptd-api-gateway:.*|image: tuana9a/dkhptd-api-gateway:$BUILD_TAG_SECONDLY|" k8s/deployments.yaml
+                        git checkout -b "$MR_BRANCH_NAME"
+                        sed -i "s|image: tuana9a/dkhptd-api-gateway:.*|image: tuana9a/dkhptd-api-gateway:$BUILD_TAG_SECONDLY|" deploy/dkhptd/k8s/deployments.yaml
                         git add .
-                        git commit -m "Update dkhptd-api-gateway version to $BUILD_TAG_SECONDLY"
-                        git push $MANIFEST_REPO_URL
+                        git commit -m "Bump dkhptd-api-gateway version to $BUILD_TAG_SECONDLY"
+                        git push $MANIFEST_REPO_URL --set-upstream "$MR_BRANCH_NAME" -o merge_request.create -o merge_request.target=main -o merge_request.remove_source_branch
                         '''
                         sh 'if [ -d $MANIFEST_REPO_NAME ]; then rm -r $MANIFEST_REPO_NAME; fi'
                     }
